@@ -1,4 +1,25 @@
 {% extends 'course/layout.html' %}
 {% block body %}
-<h1> Hi</h1>
+<h1> Welcome, {{user.first_name}} {{user.last_name}}</h1>
+
+<h3> วิชาที่ลงทะเบียน </h3>
+<ul>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">รหัสวิชา</th>
+        <th scope="col">ชื่อวิชา</th>{{ subjects }}
+      </tr>
+    </thead>
+    <tbody>
+        {% for enroll in enrollment %}
+        <tr>
+            <td>{{ enroll.courses.sub_code }}</td>
+            <td>{{ enroll.courses.sub_name }}</td>    
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+  </table>
+</ul>
 {% endblock %}

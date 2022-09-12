@@ -1,0 +1,48 @@
+{% extends 'course/layout.html' %}
+
+{% block body %}
+<h1> Subjects </h1>
+<ul>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">รหัสวิชา</th>
+        <th scope="col">ชื่อวิชา</th>
+        <th scope="col">จำนวนที่นั่ง</th>
+        <th scope="col">ที่นั่งคงเหลือ</th>
+        <th scope="col">สถานะ</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for subs in subject %}
+        <tr>
+            <th scope="row">{{ subs.id }}</th>
+            <td>{{ subs.sub_code }}</td>
+            <td>{{ subs.sub_name }}</td>
+            <td>{{ subs.max_seat }}</td>
+            <td>{{ subs.registered.all.count }}</td>
+            <td>
+                {% if request.user in subs.registered.all %}
+                <form method="post" action="removeSub">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning" name ="unaction" value="{{subs.id}}" onclick="return confirm('Are you sure?')">Unenroll</button>
+                </form>
+                {% elif subs.registered.all.count < subs.max_seat %}
+                <form method="post" action="addSub">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary" name ="action" value="{{subs.id}}" onclick="return confirm('Are you sure?')">Available</button>
+                </form>
+                {% else %}
+                    <button type="button" class="btn btn-danger">Full</button>
+                {% endif %}
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+  </table>
+</ul>
+
+
+{% endblock %}
