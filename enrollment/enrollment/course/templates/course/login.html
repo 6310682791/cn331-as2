@@ -1,21 +1,25 @@
 {% extends 'course/layout.html' %}
 {% block body %}
-    <h2 style="text-align: center;">Login</h2>
-    {% if message %}
-        <div class="alert alert-danger" role="alert">{{ message }}</div>
-    {% endif %}
+<div class="container-login" style="background-color: rgb(130, 129, 128);height: 100%;width: 100%;
+padding: 20px;border-radius: 1em; align-content: center; margin-top: 15%;
+    margin-left: 10%; max-width: 1000px;">
+  <br><h1 style="text-align: center;">Login</h1><br>
+  {% if message %}
+      <div class="alert alert-danger" role="alert">{{ message }}</div>
+  {% endif %}
 
-
-    
-    <form action="{% url 'login' %}" method="post" style="text-align: center;">
-      {% csrf_token %}
-      <div class="mb-3">
+  <form action="{% url 'login' %}" method="post" style="text-align: center; ">
+    {% csrf_token %}
+    <div class="container">
+      <div class="mb-4">
         <input type="text" class="form-control" name="username" placeholder="Username">
       </div>
       <div class="mb-3">
         <input type="password" class="form-control" name="password" placeholder="Password">
       </div>
-      <input type="submit" value="login">        
+      <input type="submit" value="login" class="btn btn-secondary"></button>
+    </div>       
   </form>
+</div>
   
 {% endblock %}

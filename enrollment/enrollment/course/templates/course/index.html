@@ -1,21 +1,23 @@
 {% extends 'course/layout.html' %}
 {% block body %}
-<h1> Welcome, {{user.first_name}} {{user.last_name}}</h1>
+<br><h1> Welcome, {{user.first_name}} {{user.last_name}}</h1><br>
 
-<h3> วิชาที่ลงทะเบียน </h3>
+<h3> วิชาที่ลงทะเบียน </h3><br>
 <ul>
 <table class="table">
     <thead>
       <tr>
         <th scope="col">รหัสวิชา</th>
         <th scope="col">ชื่อวิชา</th>{{ subjects }}
+        <th scope="col">สถานะ</th>
       </tr>
     </thead>
     <tbody>
         {% for enroll in enrollment %}
         <tr>
             <td>{{ enroll.courses.sub_code }}</td>
-            <td>{{ enroll.courses.sub_name }}</td>    
+            <td>{{ enroll.courses.sub_name }}</td> 
+            <td><span class="badge text-bg-success">Success</span></td>   
         </tr>
         
         {% endfor %}
