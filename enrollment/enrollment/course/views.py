@@ -1,7 +1,7 @@
 from distutils.util import subst_vars
 from genericpath import exists
 from re import sub
-from subprocess import STARTF_USESTDHANDLES
+# from subprocess import STARTF_USESTDHANDLES
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
