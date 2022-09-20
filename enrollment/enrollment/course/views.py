@@ -1,6 +1,10 @@
 from distutils.util import subst_vars
 from genericpath import exists
 from re import sub
+<<<<<<< HEAD
+=======
+# from subprocess import STARTF_USESTDHANDLES
+>>>>>>> production
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponseRedirect

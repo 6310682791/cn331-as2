@@ -1,4 +1,9 @@
 asgiref==3.5.2
 Django==4.1.1
 sqlparse==0.4.2
+<<<<<<< HEAD
 subprocess.run==0.0.8
+=======
+gunicorn
+django-heroku
+>>>>>>> production
