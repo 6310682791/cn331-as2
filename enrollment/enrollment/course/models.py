@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
@@ -12,15 +11,15 @@ class Course(models.Model):
 
 
     def __str__(self):
-        return f"{self.semester}/{self.year}: ({self.sub_code}) {self.sub_name}  max:{self.max_seat}"
+        return f"{self.semester}/{self.year}: ({self.sub_code}) {self.sub_name}"
 
 
 
 class Enrollment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ManyToManyField(User)
     courses = models.ForeignKey(Course, on_delete=models.CASCADE)
     
 
     def __str__(self):
-        return f"{self.user} {self.courses}"
+        return f"{self.courses}"
 
