@@ -10,7 +10,7 @@ class CourseTestCase(TestCase):
         student1 = User.objects.create(username = "6310682791", first_name = "Kasidej")
         course1 = Course.objects.create(sub_code = "CN331", max_seat = 2)
         course1.registered.add(student1)
-        
+
 
     def test_seat_available(self):
         cn331 = Course.objects.first()
