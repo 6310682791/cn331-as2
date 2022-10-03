@@ -18,7 +18,6 @@ def index(request):
         return HttpResponseRedirect(reverse('login'))
     user_data = User.objects.get(id=request.user.id)
     enrollment = Enrollment.objects.filter(user=user_data)
-    print(enrollment)
     return render(request, 'course/index.html', {
         'enrollment' : enrollment
     })
@@ -31,6 +30,7 @@ def test(request):
 
 def subject(request):
     if not request.user.is_authenticated:
+        print("fail")
         return HttpResponseRedirect(reverse('login'))
     subject = Course.objects.all()
     
@@ -66,7 +66,7 @@ def login_view(request):
         else:
             return render(request, 'course/login.html',{
                 'message' : 'Invalid credentials.'
-            })
+            },status = 400)
             
     return render(request, 'course/login.html')
 
