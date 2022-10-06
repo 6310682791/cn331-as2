@@ -10,7 +10,7 @@ jobs:
         run: |
           pip3 install --user -r requirements.txt
           pip3 install coverage
-          python3 manage.py makemigrations
-          python3 manage.py migrate
-          coverage run manage.py test 
+          python3 ./manage.py makemigrations
+          python3 ./manage.py migrate
+          coverage run ./manage.py test 
           coverage report -m
