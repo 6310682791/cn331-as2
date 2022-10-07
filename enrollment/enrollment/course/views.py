@@ -30,7 +30,6 @@ def test(request):
 
 def subject(request):
     if not request.user.is_authenticated:
-        print("fail")
         return HttpResponseRedirect(reverse('login'))
     subject = Course.objects.all()
     
