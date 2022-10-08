@@ -8,9 +8,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run Django unit tests
         run: |
-          pip3 install --user -r requirements.txt
-          pip3 install coverage
-          python3 manage.py makemigrations
-          python3 manage.py migrate
-          coverage run manage.py test 
+          cd enrollment/enrollment
+          pip install --user -r requirements.txt
+          pip install coverage
+          python ./manage.py makemigrations
+          python ./manage.py migrate
+          coverage run ./manage.py test 
           coverage report -m
