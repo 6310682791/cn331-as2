@@ -22,17 +22,15 @@ class CourseViewTestCase(TestCase):
         self.assertEqual(
             response.context['subject'].count(), 1)
 
-    def test_cannot_book_nonavailable_seat_flight(self):
+    def test_cannot_book_nonavailable_seat(self):
         """ cannot book full capacity flight"""
         student2 = User.objects.create_user(username= "6310611113", password="fluke123",first_name = "Yannadech")
         f = Course.objects.first()
         f.registered.add(student2)
         f.save()
-
         c = Client()
         c.login(username = "6310611113", password = "fluke123")
         c.get('addSub')
-
         self.assertFalse(f.registered.count() < f.max_seat)
 
     def test_project_index(self):
