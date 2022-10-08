@@ -6,38 +6,37 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from course.models import Course, Enrollment
 from django.contrib.auth.models import User
 
 # Create your views here.
     
-       
+@login_required(login_url="/login")
 def index(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('login'))
     user_data = User.objects.get(id=request.user.id)
     enrollment = Enrollment.objects.filter(user=user_data)
     return render(request, 'course/index.html', {
         'enrollment' : enrollment
     })
-    
 
+@login_required(login_url="/login")
 def test(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('login'))
+    # if not request.user.is_authenticated:
+    #     return HttpResponseRedirect(reverse('login'))
     return render(request, 'course/test.html')
 
+@login_required(login_url="/login")
 def subject(request):
-    if not request.user.is_authenticated:
-        print("fail")
-        return HttpResponseRedirect(reverse('login'))
+    # if not request.user.is_authenticated:
+    #     print("fail")
+    #     return HttpResponseRedirect(reverse('login'))
     subject = Course.objects.all()
     
     return render(request, 'course/subject.html', {
         'subject' : subject,
 
-        
     })
 
 def addSub(request):
@@ -75,4 +74,3 @@ def logout_view(request):
     return render(request, 'course/login.html', {
         'message' : 'Logged out !'
     })
-
